@@ -58,3 +58,10 @@ int arabic_to_roman(arabic_t a, roman_t* r)
 
 	return 0;
 }
+
+// Convert passed roman numeral r to arabic.
+// Arabic value returned, negative value returned on error.
+int roman_to_arabic(const roman_t r)
+{
+	return 1;
+}
