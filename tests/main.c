@@ -1,15 +1,16 @@
 #include <stdlib.h>
 #include <check.h>
 
+extern Suite* check_a2r(void);
+
 int main(void)
 {
 	int number_failed;
 	SRunner* sr;
 
-	Suite* s;
-        s = suite_create("initial");
+	Suite* s_a2r = check_a2r;
 
-	sr = srunner_create(s);
+	sr = srunner_create(s_a2r);
 
 	srunner_run_all(sr, CK_NORMAL);
 	number_failed = srunner_ntests_failed(sr);

@@ -5,7 +5,7 @@ check_FLAGS =  `pkg-config --cflags --libs check`
 %.o: %.c
 	$(CC) -c $< -o $@
 
-test: tests/main.o
+test: tests/main.o tests/arabic2roman.o
 	$(CC) $? -o tests/check $(check_FLAGS)
 	./tests/check
 
