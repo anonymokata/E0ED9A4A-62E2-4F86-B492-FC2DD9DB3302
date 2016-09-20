@@ -1,14 +1,14 @@
 #include <stdlib.h>
 #include <check.h>
 
-extern Suite* check_a2r(void);
+Suite* check_a2r(void);
 
 int main(void)
 {
 	int number_failed;
 	SRunner* sr;
 
-	Suite* s_a2r = check_a2r;
+	Suite* s_a2r = check_a2r();
 
 	sr = srunner_create(s_a2r);
 
