@@ -58,3 +58,51 @@ int arabic_to_roman(arabic_t a, roman_t* r)
 
 	return 0;
 }
+
+// Match a passed roman numeral to one in the mapped list.
+// Returns its arabic value, negative value returned if no match was found.
+int match(const roman_t rmn)
+{
+	int idx;
+	for (idx = 0; idx < MAP_ELEM_LENGTH; idx++) {
+		if (0 == strcmp(rmap[idx].roman, rmn))
+			return rmap[idx].arabic;
+	}
+	return -1;
+}
+
+// Convert passed roman numeral r to arabic.
+// Arabic value returned, negative value returned on error.
+int roman_to_arabic(const roman_t r)
+{
+	arabic_t a = 0; //initial arabic value
+	int idx = 0; //initial start index
+
+	do {
+		// Try to match next two roman numeral characters
+		if (2 <= strlen((char*)r)-idx) {
+			roman_t slice = calloc(2, sizeof(roman_t));
+			strncpy((char*)slice, &r[idx], 2);
+			int m = match(slice);
+			free(slice);
+			if (0 < m) {
+				a = a + m;
+				idx = idx + 2;
+				continue;
+			}
+		}
+		// Couldn't find match, try just first character
+		roman_t slice = calloc(2, sizeof(roman_t));
+		strncpy((char*)slice, &r[idx], 1);
+		int m = match(slice);
+		free(slice);
+		if (0 < m) {
+			a = a + m;
+			idx++;
+			continue;
+		}
+		// Failure, couldn't match the character as a roman numeral
+		return -1;
+	} while (idx < strlen((char*)r));
+	return a;
+}
