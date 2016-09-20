@@ -10,7 +10,7 @@ all: src/libroman.a
 src/libroman.a: src/roman.o
 	$(AR) rcs $@ $?
 
-test: tests/main.o tests/arabic2roman.o tests/roman2arabic.o src/libroman.a
+test: tests/main.o tests/arabic2roman.o tests/roman2arabic.o tests/add.o tests/sub.o src/libroman.a
 	$(CC) $? -o tests/check $(check_FLAGS)
 	./tests/check
 
