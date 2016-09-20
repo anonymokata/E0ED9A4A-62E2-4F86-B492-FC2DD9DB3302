@@ -22,5 +22,6 @@ clean:
 	rm -f tests/check
 	rm -f src/*.a
 	rm -f src/*.o
+	rm -f src/calc
 
 .PHONY: all test clean
