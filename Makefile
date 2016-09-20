@@ -5,12 +5,19 @@ check_FLAGS =  `pkg-config --cflags --libs check`
 %.o: %.c
 	$(CC) -c $< -o $@
 
-test: tests/main.o
+all: src/libroman.a
+
+src/libroman.a: src/roman.o
+	$(AR) rcs $@ $?
+
+test: tests/main.o tests/arabic2roman.o src/libroman.a
 	$(CC) $? -o tests/check $(check_FLAGS)
 	./tests/check
 
 clean:
 	rm -f tests/*.o
 	rm -f tests/check
+	rm -f src/*.a
+	rm -f src/*.o
 
-.PHONY: test clean
+.PHONY: all test clean
