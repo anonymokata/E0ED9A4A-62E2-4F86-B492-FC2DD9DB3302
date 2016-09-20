@@ -4,10 +4,12 @@
 
 START_TEST(a2r_1)
 {
-	char* r;
+	roman_t* r;
 	int ret;
 	ret = arabic_to_roman(1, &r);
+	ck_assert_str_eq(r, "I");
 	ck_assert_int_eq(ret, 0);
+	if (0 == ret) free(r);
 }
 END_TEST
 
