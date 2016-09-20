@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <check.h>
+#include "../src/roman.h"
 
 START_TEST(r2a_1)
 {
