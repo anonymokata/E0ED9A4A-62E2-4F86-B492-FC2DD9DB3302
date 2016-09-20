@@ -2,3 +2,4 @@ tests/check
 tests/*.o
 src/*.o
 src/*.a
+src/calc
